@@ -35,4 +35,22 @@ public class TransactionController {
                 .orElseThrow(() -> new ResourceNotFoundException("Transaction not found with id " + id));
         return ResponseEntity.ok(transaction);
     }
+
+    // Update a transaction by ID
+    @PutMapping("/{id}")
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable Long id,
+                                                         @RequestBody Transaction transactionDetails) {
+        // Find the existing transaction
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Transaction not found with id " + id));
+        // Update the transaction fields
+        transaction.setDate(transactionDetails.getDate());
+        transaction.setAmount(transactionDetails.getAmount());
+        transaction.setType(transactionDetails.getType());
+        transaction.setNotes(transactionDetails.getNotes());
+        transaction.setBank(transactionDetails.getBank());
+        // Save the updated transaction
+        Transaction updatedTransaction = transactionRepository.save(transaction);
+        return ResponseEntity.ok(updatedTransaction);
+    }
 }
