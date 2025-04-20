@@ -25,6 +25,10 @@ export class TransactionListComponent {
     this.router.navigate(['transactions', id, 'update']); // Navigate to the update route with the transaction ID
   }
 
+  viewTransactionDetails(id: number) {
+    this.router.navigate(['transactions', id, 'details']); // Navigate to the details route with the transaction ID
+  }
+
   async deleteTransaction(id: number): Promise<void> {
     try {
       // Call the deleteTransaction method from the service and wait for the response

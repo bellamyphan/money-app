@@ -8,13 +8,15 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TransactionCreateComponent } from './transaction-create/transaction-create.component';
 import { TransactionUpdateComponent } from './transaction-update/transaction-update.component';
+import { TransactionDetailsComponent } from './transaction-details/transaction-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransactionListComponent,
     TransactionCreateComponent,
-    TransactionUpdateComponent
+    TransactionUpdateComponent,
+    TransactionDetailsComponent
   ],
   imports: [
     BrowserModule, // Import BrowserModule for browser-specific features
