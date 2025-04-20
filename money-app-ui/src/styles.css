@@ -11,3 +11,14 @@
     bottom: 0;
     width: 100%;
 }
+
+.scrollable-table-container {
+    max-height: 70vh;  /* Set the maximum height to 60% of the viewport height */
+    overflow-y: auto;   /* Enables vertical scrolling */
+    margin-top: 20px;   /* Adds some spacing from the heading */
+}
+
+.table {
+    width: 100%;  /* Ensures the table takes up full width */
+    table-layout: fixed;  /* Ensures column widths are consistent */
+}
