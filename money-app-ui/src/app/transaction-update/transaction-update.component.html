@@ -50,7 +50,16 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                <button class="btn btn-primary btn-block" type="submit" [disabled]="submitting">
+                    {{ submitting ? 'Updating...' : 'Submit' }}
+                </button>
+
+                <!-- Optional Spinner While Submitting -->
+                <div *ngIf="submitting" class="text-center mt-3">
+                    <div class="spinner-border spinner-border-sm text-primary" role="status">
+                        <span class="visually-hidden">Submitting...</span>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

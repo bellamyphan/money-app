@@ -15,6 +15,7 @@ export class TransactionUpdateComponent {
   id!: number;
   transaction: Transaction = new Transaction();
   loading: boolean = true; // Track loading state
+  submitting: boolean = false; // Track submitting state
 
   constructor(
     private transactionService: TransactionService,
@@ -35,7 +36,15 @@ export class TransactionUpdateComponent {
     }
   }
 
-  onSubmit() {
-    throw new Error('Method not implemented.');
+  async onSubmit() {
+    this.submitting = true;
+    try {
+      await firstValueFrom(this.transactionService.updateTransaction(this.id, this.transaction));
+      this.router.navigate(['/transactions']);
+    } catch (error) {
+      console.error('Failed to update transaction:', error);
+    } finally {
+      this.submitting = false;
+    }
   }
 }

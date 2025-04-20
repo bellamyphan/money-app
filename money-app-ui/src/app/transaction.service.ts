@@ -25,4 +25,9 @@ export class TransactionService {
   createTransaction(transaction: Transaction): Observable<Transaction> { // Create a new transaction
     return this.httpClient.post<Transaction>(this.transactionsUrl, transaction);
   }
+
+  updateTransaction(id: number, transaction: Transaction): Observable<Transaction> { // Update an existing transaction
+    const url = `${this.transactionsUrl}/${id}`;
+    return this.httpClient.put<Transaction>(url, transaction);
+  }
 }
