@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', redirectTo: '/transactions', pathMatch: 'full'},
+  {path: 'transactions', component: TransactionListComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

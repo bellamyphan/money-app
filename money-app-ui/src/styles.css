@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+.custom-footer {
+    background-color: #343a40; /* Equivalent to bg-dark */
+    color: white; /* Equivalent to text-white */
+    padding-top: 1rem; /* Equivalent to py-3 (adds padding to top) */
+    padding-bottom: 1rem; /* Equivalent to py-3 (adds padding to bottom) */
+    text-align: center; /* Equivalent to text-center */
+    position: absolute; /* Positioning to stick to the bottom */
+    bottom: 0;
+    width: 100%;
+}
