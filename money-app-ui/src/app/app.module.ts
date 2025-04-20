@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,8 @@ import { TransactionCreateComponent } from './transaction-create/transaction-cre
   ],
   imports: [
     BrowserModule, // Import BrowserModule for browser-specific features
-    AppRoutingModule // Import the routing module for navigation
+    AppRoutingModule, // Import the routing module for navigation
+    FormsModule // Import FormsModule for template-driven forms
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()), // New way to configure HttpClient

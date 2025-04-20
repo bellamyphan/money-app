@@ -12,9 +12,7 @@ import { Observable } from 'rxjs';
 export class TransactionListComponent {
   transactions$!: Observable<Transaction[]>; // Declare an Observable for transactions
 
-  constructor(private transactionService: TransactionService) {
-    // Initialize the transactions array with sample data
-  }
+  constructor(private transactionService: TransactionService) {}
 
   ngOnInit(): void {
     this.transactions$ = this.transactionService.getTransactions(); // Assign Observable to the component property
