@@ -3,10 +3,12 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TransactionListComponent
   ],
   imports: [
     BrowserModule,
