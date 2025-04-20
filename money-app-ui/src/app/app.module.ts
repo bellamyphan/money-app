@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { TransactionCreateComponent } from './transaction-create/transaction-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionListComponent // Add the TransactionListComponent here
+    TransactionListComponent,
+    TransactionCreateComponent
   ],
   imports: [
     BrowserModule, // Import BrowserModule for browser-specific features
