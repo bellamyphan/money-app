@@ -1,1 +1,53 @@
-<p>transaction-details works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center mb-4">Transaction Details</h3>
+
+            <!-- Show loading spinner/message while loading the transaction -->
+            <div *ngIf="loading" class="text-center">
+                <p>Loading transaction data...</p>
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Show transaction details only when data is ready -->
+            <div *ngIf="!loading">
+                <!-- Date -->
+                <div class="form-group mb-3">
+                    <label>Date</label>
+                    <p class="form-control-plaintext">{{ transaction.date | date }}</p>
+                </div>
+
+                <!-- Amount -->
+                <div class="form-group mb-3">
+                    <label>Amount</label>
+                    <p class="form-control-plaintext">{{ transaction.amount | currency }}</p>
+                </div>
+
+                <!-- Type -->
+                <div class="form-group mb-3">
+                    <label>Type</label>
+                    <p class="form-control-plaintext">{{ transaction.type }}</p>
+                </div>
+
+                <!-- Bank -->
+                <div class="form-group mb-3">
+                    <label>Bank</label>
+                    <p class="form-control-plaintext">{{ transaction.bank }}</p>
+                </div>
+
+                <!-- Notes -->
+                <div class="form-group mb-3">
+                    <label>Notes</label>
+                    <p class="form-control-plaintext">{{ transaction.notes }}</p>
+                </div>
+
+                <!-- Back Button -->
+                <div class="text-center mt-4">
+                    <button class="btn btn-secondary" (click)="goBack()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
