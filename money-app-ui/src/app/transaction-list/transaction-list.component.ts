@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Transaction } from '../transaction';
 import { TransactionService } from '../transaction.service';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 export class TransactionListComponent {
   transactions$!: Observable<Transaction[]>; // Declare an Observable for transactions
 
-  constructor(private transactionService: TransactionService, private router: Router) {}
+  constructor(
+    private transactionService: TransactionService, 
+    private router: Router) { }
 
   ngOnInit(): void {
     this.transactions$ = this.transactionService.getTransactions(); // Assign Observable to the component property
@@ -23,5 +25,21 @@ export class TransactionListComponent {
     this.router.navigate(['transactions', id, 'update']); // Navigate to the update route with the transaction ID
   }
 
-  deleteTransaction(id: number) {}
+  async deleteTransaction(id: number): Promise<void> {
+    try {
+      // Call the deleteTransaction method from the service and wait for the response
+      const response = await firstValueFrom(this.transactionService.deleteTransaction(id));
+      
+      // Check if the response contains 'success' property
+      if (response.deleted) {
+        console.log('Transaction deleted successfully');
+        // Reload the transactions list or update the view after deletion
+        this.transactions$ = this.transactionService.getTransactions();
+      } else {
+        console.error('Failed to delete transaction: Unknown error');
+      }
+    } catch (err) {
+      console.error('Error deleting transaction', err);
+    }
+  }
 }

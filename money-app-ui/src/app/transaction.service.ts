@@ -30,4 +30,9 @@ export class TransactionService {
     const url = `${this.transactionsUrl}/${id}`;
     return this.httpClient.put<Transaction>(url, transaction);
   }
+
+  deleteTransaction(id: number): Observable<any> {
+    const url = `${this.transactionsUrl}/${id}`;
+    return this.httpClient.delete<any>(url);
+  }
 }

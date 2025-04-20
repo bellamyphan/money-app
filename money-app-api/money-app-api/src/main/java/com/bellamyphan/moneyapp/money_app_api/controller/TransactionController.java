@@ -56,16 +56,14 @@ public class TransactionController {
         return ResponseEntity.ok(updatedTransaction);
     }
 
+    // Delete a transaction by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteTransaction(@PathVariable Long id) {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Transaction not found with id " + id));
-
         transactionRepository.delete(transaction);
-
         Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", true);  // Changed the key to "deleted"
-
+        response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 }
