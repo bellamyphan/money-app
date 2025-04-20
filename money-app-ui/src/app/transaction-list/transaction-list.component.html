@@ -13,6 +13,7 @@
                 <th>Amount</th>
                 <th>Type</th>
                 <th>Notes</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,10 @@
                 <td>{{ transaction.amount | currency }}</td>
                 <td>{{ transaction.type }}</td>
                 <td>{{ transaction.notes }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="updateTransaction(transaction.id)">Update</button>
+                    <button class="btn btn-danger" (click)="deleteTransaction(transaction.id)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
