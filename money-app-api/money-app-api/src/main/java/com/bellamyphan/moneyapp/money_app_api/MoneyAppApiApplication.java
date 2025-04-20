@@ -1,0 +1,13 @@
+package com.bellamyphan.moneyapp.money_app_api;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MoneyAppApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MoneyAppApiApplication.class, args);
+	}
+
+}
