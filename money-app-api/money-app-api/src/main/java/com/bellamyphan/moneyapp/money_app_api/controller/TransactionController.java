@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/transactions")
@@ -52,5 +54,18 @@ public class TransactionController {
         // Save the updated transaction
         Transaction updatedTransaction = transactionRepository.save(transaction);
         return ResponseEntity.ok(updatedTransaction);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteTransaction(@PathVariable Long id) {
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Transaction not found with id " + id));
+
+        transactionRepository.delete(transaction);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Transaction deleted successfully", true);
+
+        return ResponseEntity.ok(response);
     }
 }
