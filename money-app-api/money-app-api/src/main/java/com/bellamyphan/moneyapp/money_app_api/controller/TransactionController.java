@@ -64,7 +64,7 @@ public class TransactionController {
         transactionRepository.delete(transaction);
 
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Transaction deleted successfully", true);
+        response.put("deleted", true);  // Changed the key to "deleted"
 
         return ResponseEntity.ok(response);
     }
