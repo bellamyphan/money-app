@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Transaction } from '../transaction';
+import { TransactionService } from '../transaction.service';
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-create',
@@ -11,9 +14,26 @@ export class TransactionCreateComponent {
 
   transaction: Transaction = new Transaction();
 
+  constructor(private transactionService: TransactionService, private router: Router) { }
+
+  async saveTransaction() {
+    try {
+      const data = await firstValueFrom(this.transactionService.createTransaction(this.transaction));
+      console.log('Transaction created:', data);
+      this.goToTransactionList();
+    } catch (error) {
+      console.error('Error creating transaction:', error);
+    }
+  }
+
+  // This method is used to navigate to the transaction list page
+  goToTransactionList() {
+    this.router.navigate(['/transactions']);
+  }
+
+  // This method is called when the form is submitted
   onSubmit() {
     console.log('Transaction created:', this.transaction);
-    // Here you would typically send the transaction to a service to save it
-    // For example: this.transactionService.createTransaction(this.transaction).subscribe(...);
+    this.saveTransaction();
   }
 }
