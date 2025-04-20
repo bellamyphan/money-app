@@ -22,18 +22,18 @@ public class TransactionController {
         return transactionRepository.findAll();
     }
 
-    // Create a new transaction
-    @PostMapping
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
-        return transactionRepository.save(transaction);
-    }
-
     // Get a transaction by ID
     @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransactionById(@PathVariable Long id) {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Transaction not found with id " + id));
         return ResponseEntity.ok(transaction);
+    }
+
+    // Create a new transaction
+    @PostMapping
+    public Transaction createTransaction(@RequestBody Transaction transaction) {
+        return transactionRepository.save(transaction);
     }
 
     // Update a transaction by ID
