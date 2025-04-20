@@ -4,19 +4,21 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionListComponent
+    TransactionListComponent // Add the TransactionListComponent here
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule, // Import BrowserModule for browser-specific features
+    AppRoutingModule // Import the routing module for navigation
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideHttpClient(withInterceptorsFromDi()), // New way to configure HttpClient
+    provideClientHydration(withEventReplay()), // Keep the original hydration provider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // Bootstrap the AppComponent
 })
 export class AppModule { }

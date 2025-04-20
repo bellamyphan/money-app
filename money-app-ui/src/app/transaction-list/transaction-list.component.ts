@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Transaction } from '../transaction';
+import { TransactionService } from '../transaction.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-list',
@@ -8,50 +10,13 @@ import { Transaction } from '../transaction';
   styleUrl: './transaction-list.component.css'
 })
 export class TransactionListComponent {
-  transactions!: Transaction[];
+  transactions$!: Observable<Transaction[]>; // Declare an Observable for transactions
+
+  constructor(private transactionService: TransactionService) {
+    // Initialize the transactions array with sample data
+  }
 
   ngOnInit(): void {
-    this.transactions = [
-      {
-        id: 1,
-        amount: 1200,
-        bank: 'Chase',
-        date: new Date('2025-04-01'),
-        notes: 'Paycheck',
-        type: 'Income'
-      },
-      {
-        id: 2,
-        amount: -300,
-        bank: 'Chase',
-        date: new Date('2025-04-03'),
-        notes: 'Groceries at Walmart',
-        type: 'Expense'
-      },
-      {
-        id: 3,
-        amount: -50,
-        bank: 'Bank of America',
-        date: new Date('2025-04-05'),
-        notes: 'Gas for car',
-        type: 'Expense'
-      },
-      {
-        id: 4,
-        amount: 500,
-        bank: 'Wells Fargo',
-        date: new Date('2025-04-10'),
-        notes: 'Freelance payment',
-        type: 'Income'
-      },
-      {
-        id: 5,
-        amount: -100,
-        bank: 'Wells Fargo',
-        date: new Date('2025-04-12'),
-        notes: 'Electric bill',
-        type: 'Expense'
-      }
-    ];
+    this.transactions$ = this.transactionService.getTransactions(); // Assign Observable to the component property
   }
 }
