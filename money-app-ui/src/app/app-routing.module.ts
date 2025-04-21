@@ -6,12 +6,21 @@ import { TransactionUpdateComponent } from './transaction-update/transaction-upd
 import { TransactionDetailsComponent } from './transaction-details/transaction-details.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/transactions', pathMatch: 'full'}, // Redirect to transactions if the path is empty
-  {path: 'transactions', component: TransactionListComponent}, // Route for listing transactions
-  {path: 'transactions/new', component: TransactionCreateComponent}, // New route for creating a transaction
-  {path: 'transactions/:id/update', component: TransactionUpdateComponent}, // Route for editing a transaction
-  {path: 'transactions/:id/details', component: TransactionDetailsComponent}, // Route for viewing transaction details
+  { path: '', redirectTo: '/transactions', pathMatch: 'full' }, // Redirect to transactions if the path is empty
+  { path: 'transactions', component: TransactionListComponent }, // Route for listing transactions
+  { path: 'transactions/new', component: TransactionCreateComponent }, // New route for creating a transaction
+  {
+    path: 'transactions/:id/update',
+    component: TransactionUpdateComponent,
+    data: { renderMode: 'default' } // Prevent prerendering on dynamic route
+  },
+  {
+    path: 'transactions/:id/details',
+    component: TransactionDetailsComponent,
+    data: { renderMode: 'default' } // Prevent prerendering on dynamic route
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
