@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TransactionService {
 
-  private baseUrl = 'http://localhost:8080/api/v1'; // Base URL for the API
+  private baseUrl = 'http://bphanmoneyapp.us-east-2.elasticbeanstalk.com/api/v1'; // Base URL for the API
   private transactionsUrl = `${this.baseUrl}/transactions`; // URL for transactions endpoint
 
   constructor(private httpClient: HttpClient) { }
